@@ -1,0 +1,145 @@
+/* src/pages/Home.css */
+
+.home-view {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .left-sidebar,
+  .right-sidebar {
+    flex: 1;
+    padding: 20px;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .left-sidebar {
+    margin-right: 20px;
+  }
+  
+  .right-sidebar {
+    margin-left: 20px;
+  }
+  
+  .main-content-area {
+    flex: 5;
+    padding: 30px;
+    background: var(--color-white);
+    margin: 0 20px;
+    border: 1px solid var(--color-gray);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar-section h3 {
+    margin-top: 0;
+    color: var(--color-secondary);
+    font-family: 'Georgia', serif;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-section select,
+  .sidebar-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-gray);
+    border-radius: 4px;
+    font-size: 1em;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  
+  .sidebar-section input::placeholder {
+    color: #aaa;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 1em;
+  }
+  
+  th,
+  td {
+    border: 1px solid var(--color-gray);
+    padding: 12px 15px;
+    text-align: left;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  th {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  th:hover {
+    background-color: var(--color-secondary);
+  }
+  
+  th::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  td {
+    color: var(--color-dark);
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Pagination Styling */
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1.1em;
+  }
+  
+  .pagination button {
+    padding: 8px 16px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination button:hover:not(:disabled) {
+    background-color: var(--color-secondary);
+  }
+  
+  /* No Scholarships Message */
+  .no-scholarships {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: var(--color-crimson);
+    text-align: center;
+  }
+  

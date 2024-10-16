@@ -1,0 +1,49 @@
+/* src/components/Header.css */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    padding: 20px 30px;
+    z-index: 1000;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .menu h1 {
+    margin: 0;
+    font-size: 2.2em;
+    color: var(--color-white);
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav a {
+    font-size: 1.1em;
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover,
+  nav a.active {
+    text-decoration: underline;
+    color: var(--color-accent);
+  }
+  

@@ -1,0 +1,35 @@
+/* src/App.css */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Lato', Arial, sans-serif;
+  font-size: 16px;
+  color: var(--color-dark);
+  background: linear-gradient(to right, var(--color-primary-light), var(--color-primary));
+}
+
+.main-content {
+  flex: 1;
+  padding: 100px 30px 30px 30px; /* Top padding to offset the fixed header */
+  display: flex;
+  background-color: var(--color-background);
+}
+
+/* Define CSS Variables */
+:root {
+  --color-primary-light: #8ecae6;
+  --color-primary: #219ebc;
+  --color-secondary: #126782;
+  --color-dark: #023047;
+  --color-accent: #ffb703;
+  --color-orange: #fb8500;
+  --color-dark-orange: #bb3e03;
+  --color-red: #ae2012;
+  --color-crimson: #9b2226;
+  --color-hover: #fd9e02;
+  --color-background: #f5f5f5;
+  --color-white: #ffffff;
+  --color-gray: #ddd;
+}

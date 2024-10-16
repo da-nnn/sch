@@ -1,0 +1,22 @@
+/* src/pages/ScholarshipDetail.css */
+
+.scholarship-detail-view {
+    padding: 20px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .scholarship-detail-view h2 {
+    color: var(--color-secondary);
+  }
+  
+  .scholarship-detail-view p {
+    line-height: 1.6;
+  }
+  
+  .scholarship-detail-view strong {
+    color: var(--color-primary);
+  }
+  

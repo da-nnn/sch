@@ -1,0 +1,18 @@
+/* src/pages/About.css */
+
+.about-view {
+    padding: 20px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-view h2 {
+    color: var(--color-secondary);
+  }
+  
+  .about-view p {
+    line-height: 1.6;
+  }
+  
