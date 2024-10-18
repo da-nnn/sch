@@ -1,8 +1,7 @@
-// src/pages/Home.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Home.css'; // Create and style this CSS file
+import './Home.css';
 
 function Home() {
   const [scholarships, setScholarships] = useState([]);
@@ -19,12 +18,15 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    filterScholarships();
+    // filterScholarships();
   }, [scholarships, selectedCategory, searchTerm]);
 
   const fetchScholarships = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/scholarships'); // Update the API endpoint as needed
+      const response = await axios.get('http://127.0.0.1:8000/api/scrape/scholarships/', {
+        params: {pageNumber: currentPage}
+      });
+      console.log(response.data)
       setScholarships(response.data);
     } catch (error) {
       console.error('Error fetching scholarships:', error);
@@ -35,18 +37,18 @@ function Home() {
     return new Date(date).toLocaleDateString();
   };
 
-  const filterScholarships = () => {
-    const filtered = scholarships.filter((scholarship) => {
-      const matchesCategory =
-        selectedCategory === '' || scholarship.field_of_study === selectedCategory;
-      const matchesSearch =
-        scholarship.scholarship_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        scholarship.field_of_study.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-    setFilteredScholarships(filtered);
-    setCurrentPage(1); // Reset to first page on filter change
-  };
+  // const filterScholarships = () => {
+  //   const filtered = scholarships.filter((scholarship) => {
+  //     const matchesCategory =
+  //       selectedCategory === '' || scholarship.field_of_study === selectedCategory;
+  //     const matchesSearch =
+  //       scholarship.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //       scholarship.field_of_study.toLowerCase().includes(searchTerm.toLowerCase());
+  //     return matchesCategory && matchesSearch;
+  //   });
+  //   setFilteredScholarships(filtered);
+  //   setCurrentPage(1);
+  // };
 
   const changeSort = (criteria) => {
     if (sortCriteria === criteria) {
@@ -140,36 +142,53 @@ function Home() {
           <table>
             <thead>
               <tr>
-                <th>#</th>
+                {/* <th>#</th> */}
                 <th onClick={() => changeSort('scholarship_name')}>
                   Name {sortIndicator('scholarship_name')}
                 </th>
-                <th onClick={() => changeSort('field_of_study')}>
+                {/* <th onClick={() => changeSort('field_of_study')}>
                   Field of Study {sortIndicator('field_of_study')}
+                </th> */}
+                <th onClick={() => changeSort('deadline')}>
+                  Type {sortIndicator('deadline')}
                 </th>
                 <th onClick={() => changeSort('deadline')}>
                   Deadline {sortIndicator('deadline')}
                 </th>
-                <th onClick={() => changeSort('eligible_country')}>
+                <th onClick={() => changeSort('deadline')}>
+                  Country {sortIndicator('deadline')}
+                </th>
+                <th onClick={() => changeSort('deadline')}>
+                  Duration Yrs {sortIndicator('deadline')}
+                </th>
+                {/* <th onClick={() => changeSort('eligible_country')}>
                   Eligible Country {sortIndicator('eligible_country')}
-                </th>
-                <th onClick={() => changeSort('scholarship_for')}>
+                </th> */}
+                {/* <th onClick={() => changeSort('deadline')}>
+                  Download Link {sortIndicator('deadline')}
+                </th> */}
+                {/* <th onClick={() => changeSort('scholarship_for')}>
                   Scholarship For {sortIndicator('scholarship_for')}
-                </th>
+                </th> */}
                 <th>More Details</th>
               </tr>
             </thead>
             <tbody>
-              {paginatedScholarships.map((scholarship, index) => (
-                <tr key={scholarship.id}>
-                  <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
-                  <td>{scholarship.scholarship_name}</td>
-                  <td>{scholarship.field_of_study}</td>
+              {/* {paginatedScholarships.map((scholarship, index) => ( */}
+              {scholarships.map((scholarship, index) => (
+                <tr key={scholarship.name}>
+                  {/* <td>{(currentPage - 1) * itemsPerPage + index + 1}</td> */}
+                  <td>{scholarship.name}</td>
+                  <td>{scholarship.scholarship_type}</td>
+                  {/* <td>{scholarship.field_of_study}</td> */}
                   <td>{formatDate(scholarship.deadline)}</td>
-                  <td>{scholarship.eligible_country}</td>
-                  <td>{scholarship.scholarship_for}</td>
+                  <td>{scholarship.country}</td>
+                  <td>{scholarship.duration}</td>
+                  {/* <td><a target='_blank' href={`https://www.education.go.ke/${scholarship.download_link}`}>PDF Info</a></td> */}
+                  {/* <td>{scholarship.eligible_country}</td> */}
+                  {/* <td>{scholarship.scholarship_for}</td> */}
                   <td>
-                    <Link to={`/scholarship/${scholarship._id}`}>More Details</Link>
+                    <Link to={`/scholarship/${scholarship.name}`}>More Details</Link>
                   </td>
                 </tr>
               ))}
@@ -177,13 +196,23 @@ function Home() {
           </table>
 
           <div className="pagination">
-            <button onClick={previousPage} disabled={currentPage === 1}>
+            <button onClick={previousPage} 
+              disabled={currentPage === 1}
+            >
               Previous
             </button>
             <span>
               Page {currentPage} of {totalPages}
             </span>
-            <button onClick={nextPage} disabled={currentPage === totalPages}>
+            <button 
+              // onClick={nextPage}
+              onClick={
+                () => {
+                  setCurrentPage((current) => current + 1)
+                  fetchScholarships()
+                }
+              }
+              disabled={currentPage === totalPages}>
               Next
             </button>
           </div>
